@@ -19,7 +19,7 @@ For example, freshness is not only about the difference between data changing, a
 
 Another possible model that can be used for SLI design is the one from Queuing Theory. In this model, each job can be then a queuing system.
 
-The queuing system has a queue where data processing requests are received and servers that pull the requests and service them. These servers are threads within the microservices belonging to the same deployment unit.
+The queuing system has a queue where data processing requests are received, which could be kafka or rabbitMQ, and has servers that pull the requests and service them. These servers are threads within the microservices belonging to the same deployment unit.
 
 ![](/blog/img/queuing-sys-model.drawio.png)
 
