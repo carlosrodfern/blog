@@ -83,13 +83,12 @@ efficiency begins to increase the operational cost or show unacceptable
 latencies. It was not designed for efficiency because the data volume
 was low originally and designing for efficiency required more effort.
 
-Following architectural and coding guidelines and standards, contributes
+Following guidelines and standards contributes
 to keep maintainability by enforcing code testability, technology
-adequacy, acceptable efficiency in most cases, robustness, and
-uniformity for readability. Following such guidelines and standards is a
-non-functional requirement. As a result, any code that deviates from
-that fails to meet non-functional requirements as well, and it is
-classified as TD.(Ilkiewicz and Letouzey 2012)
+adequacy, acceptable efficiency (in most cases), robustness, and readability.
+Following such guidelines and standards is a non-functional requirement.
+As a result, any code that deviates from that fails to meet non-functional
+requirements as well, and it is classified as TD (Ilkiewicz and Letouzey 2012).
 
 In addition to the degradation caused by iterative incremental
 development processes, there are challenges caused by technological
