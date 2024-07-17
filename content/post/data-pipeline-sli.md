@@ -21,7 +21,7 @@ Another possible model that can be used for SLI design is the one from Queuing T
 
 The queuing system has a queue where data processing requests are received and servers that pull the requests and service them. These servers are threads within the microservices belonging to the same deployment unit.
 
-![](/img/queuing-sys-model.drawio.png)
+![](/blog/img/queuing-sys-model.drawio.png)
 
 The time the request is in the queue is the waiting time, the time the request is being serviced is the service time. The completion time is the total time it takes to process the request and send the results. It is the difference between the arrival time and the departure time.
 
