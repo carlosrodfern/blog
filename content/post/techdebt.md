@@ -93,8 +93,8 @@ classified as TD.(Ilkiewicz and Letouzey 2012)
 
 In addition to the degradation caused by iterative incremental
 development processes, there are challenges caused by technological
-inadequacy. Technologies that were beneficial in the past may now work
-against us. For example, some markup language that in the past where
+inadequacy. Technologies that were beneficial in the past may now be detrimental.
+For example, some markup language that in the past were
 used for rapid development like Coldfusion or ASP, have lost favor in
 the industry. As result, the browsability and debuggability is hampered
 by a lack of good modern Integrated Development Environment (IDE)
