@@ -151,8 +151,8 @@ refactoring*, the extra refactoring to prepare a software for change
 beyond what is reasonable, 42.8%; *additional code analysis*, additional
 study of the code for comprehension beyond what is normally expected
 effort, 37.9%. In terms of the level of impact different TD types had on
-wasted time, 36.9% reported that code issues had a *somewhat* or *to a
-great extent* impact on wasted time, followed by 21.9% for testing
+wasted time, 36.9% reported that code issues had a *somewhat* or *to a great extent*
+impact on wasted time, followed by 21.9% for testing
 issues and 21.7% for architectural issues.
 
 The second study was a replication of the first, and it confirmed the
@@ -217,7 +217,7 @@ and then a regular effort should be scheduled (meetings or tickets) to
 analyze them. The result of the analysis should be a consolidation and
 prioritization of the TD issues, and then the submission of
 re-engineering tasks (tickets) with sufficient specification of what the
-remediation is.(Ozkaya, Nord, and Kruchten 2012) (Ilkiewicz and Letouzey
+remediation is (Ozkaya, Nord, and Kruchten 2012) (Ilkiewicz and Letouzey
 2012) (Ciolkowski, Lenarduzzi, and Martini 2021).
 
 Ideally, we should monitor the progress of the elimination of TD as
