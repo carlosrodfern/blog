@@ -65,7 +65,7 @@ $$m \geq B \times M$$
 With Prometheus, that urgent alert for availability would look like this:
 
 ```
-sum(rate(http_request_duration_seconds_count{code!~"5.."}[1d])) by (app)
+sum(rate(http_request_duration_seconds_count{code=~"5.."}[1d])) by (app)
 /
 sum(rate(http_request_duration_seconds_count[1d])) by (app)
   >= 6*0.005
@@ -76,9 +76,12 @@ If the service has a different availability target, then the only thing we would
 In the case of latency, it would be like this for the target of 90% of requests at 100 ms or less response time:
 
 ```
-sum(rate(http_request_duration_seconds_bucket{code=~"2..", le="0.1"}[1d])) by (app)
+sum(
+  rate(http_request_duration_seconds_count{code!~"5.."}[1d])
+  -rate(http_request_duration_seconds_bucket{code!~"5..", le="0.1"}[1d])
+  ) by (app)
 /
-sum(rate(http_request_duration_seconds_count{code=~"2.."}[1d])) by (app)
+sum(rate(http_request_duration_seconds_count{code!~"5.."}[1d])) by (app)
   >= 6*0.1
 ```
 
