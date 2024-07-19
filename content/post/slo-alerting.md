@@ -1,19 +1,19 @@
 +++
-title = "Designing Alerts on an Availability SLO"
+title = "Designing Alerts for SLOs"
 date = 2024-07-12
 author = "Carlos R.F."
 +++
 
-The Google SRE Workbook originally explains this burn rate method in detail. Here, I describe it in a little bit different way, hoping to make it more understandable.
+This burn rate method was originally explained in detail in the Google SRE Workbook. Here, I describe it in a slightly different way, hoping to make it easier to understand.
 
-* $A_t$ : Availability target, e.g., 0.99
-* $A_p$ : Availability period, e.g., 30 days
-* $e$ : Error rate, e.g., 0.04
-* $E=1-A_t$: Error budget
-* $t_b$ : Time to burn all the error budget
+* $R_t$ : reliability target, e.g., 0.99 (availability or latency)
+* $R_p$ : reliability period, e.g., 30 days
+* $m$ : target misses rate, e.g., 0.04. It is the error rate in case of availability or the requests taking longer than the target in case of latency.
+* $M=1-R_t$: misses-budget
+* $t_b$ : time-to-burn all the misses budget
 
 $$
-t_b = \frac{E}{e} \times A_p
+t_b = \frac{M}{m} \times R_p
 $$
 
 How long does it take to burn all the error budget at a 0.002 error rate for an availability target of 0.999 (99.9%) ?
@@ -26,17 +26,17 @@ $$
 
 In this scenario, for example, if we see a consistent error rate of 0.02 in a 3-day period, we can be alerted that if we continue with such a rate, in 12 days ($15d-3d$) we would be falling from the 99.9% target.
 
-To simplify the math, let's define $B$ as the burn rate at which the error budget is burned. For example, for an availability of 0.999, the error budget is 0.001, so an error rate of 0.002 is a burn rate of 2.
+To simplify the math, let's define $B$ as the burn rate at which the misses budget is burned. For example, for an availability of 0.999, the error budget is 0.001, so an error rate of 0.002 is a burn rate of 2.
 
-$$B = \frac{e}{E}$$
+$$B = \frac{m}{M}$$
 
-We can then put the burn-rate in function of time to burn (substituting $e$):
+We can then put the burn-rate in function of time-to-burn (substituting $m$):
 
 
 $$
-B = \frac{\frac{E}{t_b} \times Ap}{E}
- = \frac{E \times Ap }{t_b \times E}
- = \frac{Ap}{t_b}
+B = \frac{\frac{M}{t_b} \times Rp}{M}
+ = \frac{M \times Rp }{t_b \times M}
+ = \frac{Rp}{t_b}
 $$
 
 With this in mind, let's define alerts that can be used for different availability requirements and are based on $B$, the burn rate.
@@ -48,47 +48,38 @@ The alerts can be defined according to existing categories, e.g., routine, urgen
 |6|5d|1d|4d|Urgent|
 |30|1d|6h|18h|Critical|
 
-Now, let's see how those rates apply to different availability requirements. If our $A_t$ is 99.5%, then our $E$ is 0.5% ($E=1-A_t$), and we are defining the urgent alert ($B=6$), then, if we observe an error rate like:
+Now, let's see how those rates apply to different reliability requirements. If our $R_t$ is 99.5%, then our $M$ is 0.5% ($M=1-R_t$), and we are defining the urgent alert ($B=6$), then our maximum error rate for a period of $1d$ before alerting would be the following:
 
-$$e \geq 6 \times 0.005$$
+$$m \geq 6 \times 0.005$$
 
-...for a period of $1d$, then we alert that we are burning the budget to the point that in 4 days we won't meet the 99.5% availability of the 30 days. That is exactly $6 \times 0.005 = 0.03$, or 3% error rate in the last 24 hours.
+If the error rate is greater, we can send an alert indicating that we are depleting the budget to the point where we won't meet the 99.5% availability of the 30-day period in 4 days. The $m$ is exactly $6 \times 0.005 = 0.03$, or 3% error rate in the last 24 hours.
+
+How would this apply to latency targets? If we have a reliability target that 90% of requests must be 100 ms or less, then the $R_t$ is 0.9, and $M$ is 0.1. The urgent alert ($B=6) would then trigger when we observe a misses rate over the period of $1d$ like the following:
+
+$$m \geq 6 \times 0.1$$
 
 The general alert formula is:
 
-$$e \geq B \times E$$
+$$m \geq B \times M$$
 
-With Prometheus, that urgent alert would look like this:
+With Prometheus, that urgent alert for availability would look like this:
 
 ```
-sum(
-    delta(http_request_duration_seconds_count{code=~"5.."}[1d])
-    /
-    delta(http_request_duration_seconds_count[1d])
-) by (app)
+sum(rate(http_request_duration_seconds_count{code!~"5.."}[1d])) by (app)
+/
+sum(rate(http_request_duration_seconds_count[1d])) by (app)
   >= 6*0.005
 ```
 
-The routine alert would be:
+If the service has a different availability target, then the only thing we would need to change is the $0.005$ to the corresponding $M$ for such a target.
+
+In the case of latency, it would be like this for the target of 90% of requests at 100 ms or less response time:
 
 ```
-sum(
-    delta(http_request_duration_seconds_count{code=~"5.."}[3d])
-    /
-    delta(http_request_duration_seconds_count[3d])
-) by (app)
-  >= 1*0.005
+sum(rate(http_request_duration_seconds_bucket{code=~"2..", le="0.1"}[1d])) by (app)
+/
+sum(rate(http_request_duration_seconds_count{code=~"2.."}[1d])) by (app)
+  >= 6*0.1
 ```
 
-And the critical would be:
-
-```
-sum(
-    delta(http_request_duration_seconds_count{code=~"5.."}[6h])
-    /
-    delta(http_request_duration_seconds_count[6h])
-) by (app)
-  >= 30*0.005
-```
-
-If the service has a different availability target, then the only thing we would need to change is the $0.005$ to the corresponding $E$ for such a target.
+To get the expressions for the other burn rates, we simply replace the $6$ with the desired $B$.
