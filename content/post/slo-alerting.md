@@ -82,4 +82,4 @@ sum(rate(http_request_duration_seconds_count{code=~"2.."}[1d])) by (app)
   >= 6*0.1
 ```
 
-To get the expressions for the other burn rates, we simply replace the $6$ with the desired $B$.
+To get the expressions for the other burn rates, we simply replace the $6$ with the desired $B$, and adjust the period (the `[1d]`) accordingly
