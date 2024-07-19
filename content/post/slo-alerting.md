@@ -4,7 +4,7 @@ date = 2024-07-12
 author = "Carlos R.F."
 +++
 
-The burn rate method was originally explained in the Google SRE Workbook. Here, I describe it in a slightly different way, hoping to make it easier to understand.
+The burn rate concept was originally explained in the Google SRE Workbook. Here, I describe it in a slightly different way, hoping to make it easier to understand.
 
 * \\(R_t\\) : reliability target, e.g., `0.99` (availability or latency)
 * \\(R_p\\) : reliability period, e.g., 30-day (`30d`)
