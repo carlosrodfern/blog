@@ -10,6 +10,7 @@ theme = "ghostwriter"
     github = "https://github.com/carlosrodfern"
     gitlab = "https://gitlab.com/carlosrodfern"
     linkedin = "https://www.linkedin.com/in/carlosrodfern/"
+    linux = "https://src.fedoraproject.org/user/carlosrodrifernandez"
     email = "carlosrodrifernandez@gmail.com"
     opengraph = true
     dateFormat = "Mon, Jan 2, 2006"
