@@ -1,11 +1,11 @@
 baseurl = "/"
-title = "Articles"
+title = "Blog"
 theme = "ghostwriter"
 
 [Params]
     mainSections = ["post"]
     intro = true
-    headline = "Articles"
+    headline = "Carlos R.F.'s Blog"
     description = "A Collection of Writings about Software Engineering"
     github = "https://github.com/carlosrodfern"
     gitlab = "https://gitlab.com/carlosrodfern"
