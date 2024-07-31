@@ -57,7 +57,7 @@ team gains a better and broader understanding of the requirements.
 Suddenly, the existing data structure or module structure does not
 correspond to the requirements. As a result, new code is forced to work
 alongside existing code, resulting in layers of “translations” or
-less-than-ideal designs. As time passes, the code becomes more difficult
+less than ideal designs. As time passes, the code becomes more difficult
 to understand, particularly the theory underlying all of the
 structuring; because it is a mix. The accumulation of unsuitable designs
 reaches a point where the code actually misleads developers and is
@@ -81,13 +81,13 @@ Efficiency and latency are non-functional requirements also affected by
 TD. The TD appears when the component that was not designed for
 efficiency begins to increase the operational cost or show unacceptable
 latencies. It was not designed for efficiency because the data volume
-was low originally and designing for efficiency required more effort.
+was originally low and designing for efficiency required greater effort.
 
 Following guidelines and standards contributes
-to keep maintainability by enforcing code testability, technology
+to keeping maintainability by enforcing code testability, technology
 adequacy, acceptable efficiency (in most cases), robustness, and readability.
 Following such guidelines and standards is a non-functional requirement.
-As a result, any code that deviates from that fails to meet non-functional
+As a result, any code that deviates from them fails to meet non-functional
 requirements as well, and it is classified as TD (Ilkiewicz and Letouzey 2012).
 
 In addition to the degradation caused by iterative incremental
@@ -104,11 +104,11 @@ modularization, resulting in large files with a large number of
 execution paths that are difficult for a human brain to follow
 (Antinyan, Sandberg, and Staron 2019). This is exacerbated by the
 constant stream of patches. As a result, code written in those languages
-degrades faster than other technologies with strong support.
+degrades faster than other technologies with better support.
 
 Rapid development technologies are also built around the ability to
 combine rendering, business logic, and data access in the same file.
-This approach, which was popular at one point in time, allows the
+This approach, which was popular at one point in the past, allows the
 developer to create a simple web portal in a relatively short period of
 time. However, it has a significant negative impact on its upkeep.
 Modernizing the system is difficult when there is no separation of
@@ -117,7 +117,7 @@ also the originators of TD.
 
 One more cause of TD is simply the lack of experience and proper
 education background of developers making code and system design
-decisions which find their way to production. This is usually the result
+decisions which find their way into production. This is usually the result
 of the lack of a development process that includes reviewing and
 auditing source code changes.
 
@@ -137,14 +137,14 @@ systematic TD management in the systems the developers were working on.
 Therefore, the numbers presented are lower bounds for systems that do
 not have any systematic TD management. The second study included 47
 developers. Since the second study simply validated the first study’s
-findings, the first study will be the focus of this paper.
+findings, the first study will be the focus of this post.
 
 The first study discovered that 23.1% of time is wasted on average. The
 average wasted time for a system 5-10 years old was 15.3%, and 55.3% for
 a system older than 20 years old. Modeling and Simulation Systems,
 Real-Time Systems, and Embedded Systems wasted less time than the
 average, whereas Data Management Systems, System Integration, and Web
-SaaS Systems wasted more than twice as much. *additional testing*,
+SaaS Systems wasted more than twice as much. *Additional testing*,
 meaning extra testing during development (local testing) beyond what is
 normally done, accounted for 43.1% of the mean wasted time; *additional
 refactoring*, the extra refactoring to prepare a software for change
@@ -166,7 +166,7 @@ incremental development. Iterative incremental development is the best
 way to create software. It enables us to deliver value faster and adapt
 to changing market demands, but it still brings us TD. On a system that
 is constantly evolving, it is impossible to eliminate TD. As a result,
-the goal is to keep it low so that it does not have a negative impact on
+the goal is to keep it low so that it does not have a significant negative impact on
 productivity and quality.
 
 TD management requires a systematic approach to remediate it (Ozkaya,
@@ -206,11 +206,9 @@ with the IDE, and the effort is 1h per occurrence if it is less than 24,
 or 2h if it is more than 24. Then the tool identifies these situations
 and calculates the total effort necessary to remediate them.
 
-Another simple and effective way of identifying TDs is by the team
-self-admitting areas of concern. This way depends on regularly reviewing
-existing and new code by experienced engineers. Code review results and
-reports of problematic codes by other engineers can be the source for
-the identification of such areas.
+Another simple and effective method of identifying TDs is by the team
+self-admitting areas of concern. This method depends on regularly reviewing
+existing and new code by experienced engineers.
 
 Regardless of methods or tools used, identified TD should be collected,
 and then a regular effort should be scheduled (meetings or tickets) to
@@ -221,7 +219,7 @@ remediation is (Ozkaya, Nord, and Kruchten 2012) (Ilkiewicz and Letouzey
 2012) (Ciolkowski, Lenarduzzi, and Martini 2021).
 
 Ideally, we should monitor the progress of the elimination of TD as
-well. SQALE can show us that progress in hours. Metrics like the
+well. SQALE can show us that progress in hours saved. Metrics like the
 distribution of Cyclomatic Complexity can show us progress in reducing
 complexity.
 
@@ -243,7 +241,6 @@ benefit from a dedicated process for TD identification and analysis, as
 well as allocating resources to TD reduction in addition to new
 development, defect remediation, security vulnerability remediation, and
 implementations.
-
 
 # References
 
