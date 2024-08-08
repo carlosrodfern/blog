@@ -6,4 +6,4 @@ author = "Carlos R.F."
 
 [Link to the article on fedoramagazine.org](https://fedoramagazine.org/a-nvr-system-on-fedora-server/)
 
-A little fun home lab project.
+A fun little home lab project.
