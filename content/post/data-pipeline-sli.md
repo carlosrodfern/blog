@@ -4,9 +4,6 @@ date = 2024-07-12
 author = "Carlos R.F."
 +++
 
-We can study data pipelines as an arrangement of jobs that receive data processing requests.
-The SRE workbook presents the following possible SLIs to measure in a pipeline:
-
 Data Pipelines can be thought as an arrangement of jobs that recieve data processing requests.
 
 The SRE workbook presents the following possible SLIs to measure in a Pipeline
