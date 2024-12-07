@@ -30,7 +30,8 @@ The _function interface_ assertions are:
 * requirements of range and enumeration membership of arguments,
 * non-null pointers,
 * requirements of the arguments with respect to the global state before a function can be called,
-* dependency of the return values on arguments,* expected effects on global state,
+* dependency of the return values on arguments,
+* expected effects on global state,
 * and expected immutability of arguments and global state after a function is called.
 
 The _function bodies_ assertions are:
@@ -42,7 +43,7 @@ The _function bodies_ assertions are:
 
 The article is not clear regarding the difference in practice between the last two.
 
-Daikon, a tool mentioned in [2], detects invariants that can be added to the code. The tool appears to generate more valid assertions than the ones added by developers, as well as more potential postconditions than developers do. However, the tool cannot generate all assertions written by developers, and one-third of assertions generated are not correct or are not relevant [^9][^10].
+Daikon, a tool mentioned in [^2], detects invariants that can be added to the code. The tool appears to generate more valid assertions than the ones added by developers, as well as more potential postconditions than developers do. However, the tool cannot generate all assertions written by developers, and one-third of assertions generated are not correct or are not relevant [^9][^10].
 
 It is worth noting an anecdotal observation described in Kudrjavets et al. [^1]. They believe that enforcing assertions with metrics like the minimum number per kilo lines of code (KLOC) will not go well in teams. They received feedback from programmers and managers at Microsoft that, unless there is a culture of using assertions, such mandates will not produce the desired results. Therefore, the best approach to increasing assertions in the source code would be to educate engineers of its benefits and encourage its use during code reviews by pointing out places where a good-quality assertion would be highly beneficial.
 
